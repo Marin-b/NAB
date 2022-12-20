@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://0vt2xtj7n8yi"]
+
+[ext_resource type="Script" path="res://scenes/shop/stat/stat.gd" id="1_1esxs"]
+[ext_resource type="PackedScene" uid="uid://cy41mi6iipw" path="res://scenes/UI/selectable_item/selectable_item.tscn" id="2_j4wg4"]
+
+[sub_resource type="Shader" id="Shader_7gk21"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: source_color = vec4(1.0, 1.0, 1.0, 0.2);
+uniform float flash_modifier: hint_range(0.0, 1.0) = 0;
+
+void fragment() {
+	// vec4 color = texture(TEXTURE, UV);
+	// color.rgb = mix(color.rgb, flash_color.rgb, 1.0);
+	// COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7yvx"]
+resource_local_to_scene = true
+shader = SubResource("Shader_7gk21")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wkx7"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0q67"]
+bg_color = Color(0.8, 0.2, 0.152941, 0.458824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6howc"]
+bg_color = Color(0.301961, 0.694118, 0.439216, 0.556863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvp1y"]
+bg_color = Color(0.94902, 0.301961, 0.737255, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjqr3"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.917647, 0.870588, 0.752941)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Theme" id="Theme_745d5"]
+resource_local_to_scene = true
+Button/styles/focus = SubResource("StyleBoxFlat_5wkx7")
+Button/styles/normal = SubResource("StyleBoxFlat_5wkx7")
+CheckButton/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+CheckButton/styles/normal = SubResource("StyleBoxFlat_q0q67")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_6howc")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_hvp1y")
+PanelContainer/styles/panel_active = SubResource("StyleBoxFlat_gjqr3")
+
+[node name="stat" type="VBoxContainer" node_paths=PackedStringArray("label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1esxs")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1920.0
+offset_bottom = 26.0
+text = "Default
+"
+
+[node name="selectable_item" parent="." instance=ExtResource("2_j4wg4")]
+material = SubResource("ShaderMaterial_x7yvx")
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 30.0
+offset_right = 1920.0
+offset_bottom = 57.0
+grow_horizontal = 1
+grow_vertical = 1
+theme = SubResource("Theme_745d5")
+
+[node name="Button" type="Button" parent="selectable_item"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 1918.0
+offset_bottom = 25.0
+text = "BUY
+"
+
+[connection signal="pressed" from="selectable_item" to="." method="_on_selectable_item_pressed"]
+[connection signal="pressed" from="selectable_item/Button" to="." method="_on_button_pressed"]

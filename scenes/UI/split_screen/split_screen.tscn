@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b47gi6eev661w"]
+
+[ext_resource type="Script" path="res://scenes/UI/split_screen/split_screen.gd" id="1_767rg"]
+
+[sub_resource type="Theme" id="Theme_di4sc"]
+BoxContainer/constants/separation = 4
+
+[node name="split_screen" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_di4sc")
+vertical = true
+script = ExtResource("1_767rg")

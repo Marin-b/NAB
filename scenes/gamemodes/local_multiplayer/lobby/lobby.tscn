@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://5og4wjsdvqfg"]
+
+[ext_resource type="Script" path="res://scenes/gamemodes/local_multiplayer/lobby/lobby.gd" id="1_l3p3y"]
+[ext_resource type="PackedScene" uid="uid://b47gi6eev661w" path="res://scenes/UI/split_screen/split_screen.tscn" id="2_hrtxe"]
+
+[node name="lobby" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_l3p3y")
+
+[node name="SplitScreen" parent="." instance=ExtResource("2_hrtxe")]

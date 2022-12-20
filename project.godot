@@ -1,0 +1,300 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+_global_script_classes=[{
+"base": "BaseStat",
+"class": &"Armor",
+"language": &"GDScript",
+"path": "res://common/scripts/stats/armor.gd"
+}, {
+"base": "BaseStat",
+"class": &"AttackSpeed",
+"language": &"GDScript",
+"path": "res://common/scripts/stats/attack_speed.gd"
+}, {
+"base": "Resource",
+"class": &"BaseStat",
+"language": &"GDScript",
+"path": "res://common/scripts/base_stat.gd"
+}, {
+"base": "Entity",
+"class": &"ControllableEntity",
+"language": &"GDScript",
+"path": "res://scenes/entities/controllable_entity.gd"
+}, {
+"base": "BaseStat",
+"class": &"CritChance",
+"language": &"GDScript",
+"path": "res://common/scripts/stats/crit_chance.gd"
+}, {
+"base": "Node",
+"class": &"CustomSceneFactory",
+"language": &"GDScript",
+"path": "res://common/scripts/custom_scene_factory.gd"
+}, {
+"base": "CharacterBody2D",
+"class": &"Entity",
+"language": &"GDScript",
+"path": "res://scenes/entities/entity.gd"
+}, {
+"base": "Node",
+"class": &"GameMode",
+"language": &"GDScript",
+"path": "res://scenes/gamemodes/game_mode.gd"
+}, {
+"base": "Control",
+"class": &"Lobby",
+"language": &"GDScript",
+"path": "res://scenes/gamemodes/local_multiplayer/lobby/lobby.gd"
+}, {
+"base": "GameMode",
+"class": &"LocalMultiplayer",
+"language": &"GDScript",
+"path": "res://scenes/gamemodes/local_multiplayer/local_multiplayer.gd"
+}, {
+"base": "BaseStat",
+"class": &"MaxHealth",
+"language": &"GDScript",
+"path": "res://common/scripts/stats/max_health.gd"
+}, {
+"base": "BaseStat",
+"class": &"MeleeDamage",
+"language": &"GDScript",
+"path": "res://common/scripts/stats/melee_damage.gd"
+}, {
+"base": "BaseStat",
+"class": &"MoveSpeed",
+"language": &"GDScript",
+"path": "res://common/scripts/stats/move_speed.gd"
+}, {
+"base": "Control",
+"class": &"PlayerControlPanel",
+"language": &"GDScript",
+"path": "res://scenes/UI/player_control_panel/player_control_panel.gd"
+}, {
+"base": "BaseStat",
+"class": &"RangedDamage",
+"language": &"GDScript",
+"path": "res://common/scripts/stats/ranged_damage.gd"
+}, {
+"base": "CheckButton",
+"class": &"ReadyButton",
+"language": &"GDScript",
+"path": "res://scenes/gamemodes/local_multiplayer/lobby/ReadyButton.gd"
+}, {
+"base": "Node",
+"class": &"Screen",
+"language": &"GDScript",
+"path": "res://scenes/UI/split_screen/screen.gd"
+}, {
+"base": "Control",
+"class": &"SelectableItem",
+"language": &"GDScript",
+"path": "res://scenes/UI/selectable_item/selectable_item.gd"
+}, {
+"base": "PlayerControlPanel",
+"class": &"Shop",
+"language": &"GDScript",
+"path": "res://scenes/shop/shop.gd"
+}, {
+"base": "VBoxContainer",
+"class": &"ShopStat",
+"language": &"GDScript",
+"path": "res://scenes/shop/stat/stat.gd"
+}, {
+"base": "BoxContainer",
+"class": &"SplitScreen",
+"language": &"GDScript",
+"path": "res://scenes/UI/split_screen/split_screen.gd"
+}, {
+"base": "Node",
+"class": &"Stat",
+"language": &"GDScript",
+"path": "res://scenes/stats/stats.gd"
+}, {
+"base": "Weapon",
+"class": &"Sword",
+"language": &"GDScript",
+"path": "res://scenes/weapons/sword/sword.gd"
+}, {
+"base": "Node2D",
+"class": &"Weapon",
+"language": &"GDScript",
+"path": "res://scenes/weapons/weapon.gd"
+}, {
+"base": "Node",
+"class": &"round",
+"language": &"GDScript",
+"path": "res://scenes/round/round.gd"
+}]
+_global_script_class_icons={
+"Armor": "",
+"AttackSpeed": "",
+"BaseStat": "",
+"ControllableEntity": "",
+"CritChance": "",
+"CustomSceneFactory": "",
+"Entity": "",
+"GameMode": "",
+"Lobby": "",
+"LocalMultiplayer": "",
+"MaxHealth": "",
+"MeleeDamage": "",
+"MoveSpeed": "",
+"PlayerControlPanel": "",
+"RangedDamage": "",
+"ReadyButton": "",
+"Screen": "",
+"SelectableItem": "",
+"Shop": "",
+"ShopStat": "",
+"SplitScreen": "",
+"Stat": "",
+"Sword": "",
+"Weapon": "",
+"round": ""
+}
+
+[application]
+
+config/name="NAB"
+run/main_scene="res://scenes/main_menu/MainMenu.tscn"
+config/features=PackedStringArray("4.0", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Stats="*res://common/scripts/stats.gd"
+CSF="*res://common/scripts/custom_scene_factory.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/vsync/vsync_mode=0
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
+[editor]
+
+movie_writer/disable_vsync=true
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[gui]
+
+theme/custom="res://common/themes/default_theme.tres"
+
+[input]
+
+ui_accept={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194309,"physical_keycode":0,"unicode":4194309,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194310,"physical_keycode":0,"unicode":4194310,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"unicode":32,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194319,"physical_keycode":0,"unicode":4194319,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194321,"physical_keycode":0,"unicode":4194321,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194320,"physical_keycode":0,"unicode":4194320,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194322,"physical_keycode":0,"unicode":4194322,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
+]
+}
+down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
+]
+}
+left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
+]
+}
+right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
+]
+}
+attack={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+]
+}
+dash={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"unicode":0,"echo":false,"script":null)
+]
+}
+aim_up={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":-1.0,"script":null)
+]
+}
+aim_down={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
+]
+}
+aim_left={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
+]
+}
+aim_right={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
+]
+}
+connect={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+disconnect={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/default_filters/use_nearest_mipmap_filter=true
+2d/snap/snap_2d_transforms_to_pixel=true

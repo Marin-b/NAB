@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7yvhfpn62rcf"]
+
+[ext_resource type="Script" path="res://scenes/UI/player_control_panel/player_control_panel.gd" id="1_ssetr"]
+
+[node name="player_control_panel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = -1919.0
+offset_bottom = -1081.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ssetr")

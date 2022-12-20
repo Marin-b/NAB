@@ -1,0 +1,123 @@
+[gd_scene load_steps=14 format=3 uid="uid://dbhemmi7685m8"]
+
+[ext_resource type="Script" path="res://scenes/shop/shop.gd" id="1_2xyje"]
+[ext_resource type="Script" path="res://scenes/shop/Player.gd" id="2_l4t4s"]
+[ext_resource type="PackedScene" uid="uid://cy41mi6iipw" path="res://scenes/UI/selectable_item/selectable_item.tscn" id="3_4eotr"]
+[ext_resource type="PackedScene" uid="uid://c320f8363oxcu" path="res://scenes/gamemodes/local_multiplayer/lobby/ready_button.tscn" id="4_v6j44"]
+
+[sub_resource type="Shader" id="Shader_ud63f"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: source_color = vec4(1.0, 1.0, 1.0, 0.2);
+uniform float flash_modifier: hint_range(0.0, 1.0) = 0;
+
+void fragment() {
+	// vec4 color = texture(TEXTURE, UV);
+	// color.rgb = mix(color.rgb, flash_color.rgb, 1.0);
+	// COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3d340"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ud63f")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qy2l"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1nbj"]
+bg_color = Color(0.8, 0.2, 0.152941, 0.458824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxtc3"]
+bg_color = Color(0.301961, 0.694118, 0.439216, 0.556863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1rml"]
+bg_color = Color(0.94902, 0.301961, 0.737255, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6f1t"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.917647, 0.870588, 0.752941)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Theme" id="Theme_e6my3"]
+resource_local_to_scene = true
+Button/styles/focus = SubResource("StyleBoxFlat_1qy2l")
+Button/styles/normal = SubResource("StyleBoxFlat_1qy2l")
+CheckButton/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+CheckButton/styles/normal = SubResource("StyleBoxFlat_u1nbj")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_sxtc3")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_n1rml")
+PanelContainer/styles/panel_active = SubResource("StyleBoxFlat_c6f1t")
+
+[sub_resource type="Theme" id="Theme_dfxvk"]
+resource_local_to_scene = true
+Button/styles/focus = SubResource("StyleBoxFlat_1qy2l")
+Button/styles/normal = SubResource("StyleBoxFlat_1qy2l")
+CheckButton/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+CheckButton/styles/normal = SubResource("StyleBoxFlat_u1nbj")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_sxtc3")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_n1rml")
+PanelContainer/styles/panel_active = SubResource("StyleBoxFlat_c6f1t")
+
+[node name="shop" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+script = ExtResource("1_2xyje")
+
+[node name="Player" type="VBoxContainer" parent="."]
+offset_right = 1920.0
+script = ExtResource("2_l4t4s")
+
+[node name="StatsContainer" type="VBoxContainer" parent="."]
+offset_top = 4.0
+offset_right = 1920.0
+offset_bottom = 4.0
+size_flags_horizontal = 3
+
+[node name="selectable" parent="." instance=ExtResource("3_4eotr")]
+material = SubResource("ShaderMaterial_3d340")
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 8.0
+offset_right = 1920.0
+offset_bottom = 35.0
+theme = SubResource("Theme_e6my3")
+
+[node name="CheckButton" parent="selectable" instance=ExtResource("4_v6j44")]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 1918.0
+offset_bottom = 25.0
+theme = SubResource("Theme_dfxvk")
+
+[connection signal="pressed" from="selectable" to="selectable/CheckButton" method="_on_selectable_pressed"]
+[connection signal="ready_updated" from="selectable/CheckButton" to="." method="_on_check_button_ready_updated"]

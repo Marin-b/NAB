@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy41mi6iipw"]
+
+[ext_resource type="Script" path="res://scenes/UI/selectable_item/selectable_item.gd" id="2_0ipxj"]
+[ext_resource type="Theme" uid="uid://6t6lb86owifs" path="res://common/themes/default_theme.tres" id="2_6xg1h"]
+
+[sub_resource type="Shader" id="Shader_w80l0"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: source_color = vec4(1.0, 1.0, 1.0, 0.2);
+uniform float flash_modifier: hint_range(0.0, 1.0) = 0;
+
+void fragment() {
+	// vec4 color = texture(TEXTURE, UV);
+	// color.rgb = mix(color.rgb, flash_color.rgb, 1.0);
+	// COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qcxuf"]
+resource_local_to_scene = true
+shader = SubResource("Shader_w80l0")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[node name="selectable_item" type="PanelContainer"]
+material = SubResource("ShaderMaterial_qcxuf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6xg1h")
+script = ExtResource("2_0ipxj")

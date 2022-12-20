@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3haiu27nf5kc"]
+
+[ext_resource type="Script" path="res://scenes/entities/entity.gd" id="1_fegwa"]
+[ext_resource type="Shader" path="res://common/shaders/flash.gdshader" id="1_vcdse"]
+[ext_resource type="PackedScene" uid="uid://26u4t1qpqtm7" path="res://scenes/entities/UI/health_bar.tscn" id="2_fhfci"]
+[ext_resource type="Script" path="res://scenes/entities/Body.gd" id="4_jgl31"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljpan"]
+resource_local_to_scene = true
+shader = ExtResource("1_vcdse")
+shader_parameter/flash_color = null
+shader_parameter/flash_modifier = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suf0l"]
+size = Vector2(50, 26)
+
+[node name="entity" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_ljpan")
+script = ExtResource("1_fegwa")
+
+[node name="health_bar" parent="." instance=ExtResource("2_fhfci")]
+offset_right = 40.0
+offset_bottom = -49.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("RectangleShape2D_suf0l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+use_parent_material = true
+scale = Vector2(0.33, 0.33)
+vframes = 4
+script = ExtResource("4_jgl31")

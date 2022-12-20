@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="PackedScene" uid="uid://c7yvhfpn62rcf" path="res://scenes/UI/player_control_panel/player_control_panel.tscn" id="1_3prnt"]
+[ext_resource type="Shader" path="res://common/shaders/UISelect.gdshader" id="2_06dwk"]
+[ext_resource type="Texture2D" uid="uid://drqc6sh0kfjqj" path="res://assets/players/foot.png" id="2_t07d7"]
+[ext_resource type="Shader" path="res://scenes/UI/UISelect.gdshader" id="2_vui0x"]
+[ext_resource type="Texture2D" uid="uid://bhmbflwq5omja" path="res://assets/players/Sword.png" id="3_3di1l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c36w1"]
+bg_color = Color(0, 0.694118, 0.623529, 1)
+
+[sub_resource type="Theme" id="Theme_cx1em"]
+Button/styles/focused = SubResource("StyleBoxFlat_c36w1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_voe7a"]
+shader = ExtResource("2_06dwk")
+shader_parameter/flash_color = null
+shader_parameter/flash_modifier = null
+
+[sub_resource type="GDScript" id="GDScript_70a7x"]
+script/source = "extends TextureRect
+
+
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14hoc"]
+resource_local_to_scene = true
+shader = ExtResource("2_vui0x")
+shader_parameter/flash_color = null
+shader_parameter/flash_modifier = null
+
+[node name="player_control_panel" instance=ExtResource("1_3prnt")]
+offset_right = -1785.0
+offset_bottom = -1011.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_cx1em")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" index="0"]
+material = SubResource("ShaderMaterial_voe7a")
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../TextureRect2")
+texture = ExtResource("2_t07d7")
+script = SubResource("GDScript_70a7x")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" index="1"]
+material = SubResource("ShaderMaterial_14hoc")
+layout_mode = 2
+focus_neighbor_left = NodePath("../TextureRect")
+texture = ExtResource("3_3di1l")
+script = SubResource("GDScript_70a7x")

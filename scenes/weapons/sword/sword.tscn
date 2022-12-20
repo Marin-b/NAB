@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj2x1gkhl458c"]
+
+[ext_resource type="Script" path="res://scenes/weapons/sword/sword.gd" id="1_cq3vv"]
+[ext_resource type="Texture2D" uid="uid://bhmbflwq5omja" path="res://assets/players/Sword.png" id="2_f5eyk"]
+[ext_resource type="Texture2D" uid="uid://beefh7hxshvnq" path="res://assets/players/slash.png" id="3_oypvk"]
+
+[sub_resource type="Animation" id="Animation_m3n8w"]
+resource_name = "Swing"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.309, 1.309, -1.309, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Slash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Area2D:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwpex"]
+_data = {
+"Swing": SubResource("Animation_m3n8w")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78fx5"]
+size = Vector2(96, 190)
+
+[node name="Weapon" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("1_cq3vv")
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, -19)
+rotation = -6.28319
+
+[node name="AnimationPivot" type="Node2D" parent="Pivot"]
+rotation = -1.309
+
+[node name="Sword" type="Sprite2D" parent="Pivot/AnimationPivot"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(66, 0)
+rotation = -1.57748
+scale = Vector2(0.5, 0.666515)
+texture = ExtResource("2_f5eyk")
+
+[node name="Slash" type="Sprite2D" parent="."]
+visible = false
+z_index = 4
+position = Vector2(54, -2)
+rotation = -1.57426
+texture = ExtResource("3_oypvk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Pivot/AnimationPivot")
+libraries = {
+"": SubResource("AnimationLibrary_xwpex")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2(67, -1)
+input_pickable = false
+monitoring = false
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -1)
+shape = SubResource("RectangleShape2D_78fx5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_hit"]

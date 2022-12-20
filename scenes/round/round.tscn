@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvifmhwurqglb"]
+
+[ext_resource type="Script" path="res://scenes/round/round.gd" id="1_fk5r1"]
+[ext_resource type="PackedScene" uid="uid://eo7oysm5affw" path="res://scenes/arenas/default.tscn" id="1_jyhvx"]
+
+[node name="round" type="Node"]
+script = ExtResource("1_fk5r1")
+
+[node name="Map" parent="." instance=ExtResource("1_jyhvx")]

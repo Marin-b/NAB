@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo51nnm62nne5"]
+
+[ext_resource type="Script" path="res://scenes/gamemodes/local_multiplayer/local_multiplayer.gd" id="1_8757v"]
+
+[node name="local_multiplayer" type="Node"]
+script = ExtResource("1_8757v")

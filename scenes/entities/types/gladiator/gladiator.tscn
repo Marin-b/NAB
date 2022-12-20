@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/entities/entity.tscn" id="1_7462x"]
+[ext_resource type="Texture2D" uid="uid://s3si0gw00aa2" path="res://assets/players/animation_sheet.png" id="2_5jhs6"]
+[ext_resource type="Shader" path="res://common/shaders/flash.gdshader" id="2_7ml4l"]
+[ext_resource type="PackedScene" uid="uid://ijwvo6dhxmnp" path="res://scenes/entities/library/feet/feet.tscn" id="2_bkj6t"]
+[ext_resource type="Script" path="res://scenes/entities/controllable_entity.gd" id="2_l2go4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rme1n"]
+resource_local_to_scene = true
+shader = ExtResource("2_7ml4l")
+shader_parameter/flash_color = null
+shader_parameter/flash_modifier = null
+
+[node name="entity" instance=ExtResource("1_7462x")]
+material = SubResource("ShaderMaterial_rme1n")
+script = ExtResource("2_l2go4")
+
+[node name="Feet" parent="." index="0" instance=ExtResource("2_bkj6t")]
+
+[node name="health_bar" parent="." index="1"]
+offset_top = -77.0
+offset_bottom = -73.0
+
+[node name="Sprite2D" parent="." index="3"]
+z_index = 1
+position = Vector2(1, -24)
+texture = ExtResource("2_5jhs6")

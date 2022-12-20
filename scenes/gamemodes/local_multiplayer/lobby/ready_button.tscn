@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c320f8363oxcu"]
+
+[ext_resource type="Theme" uid="uid://6t6lb86owifs" path="res://common/themes/default_theme.tres" id="1_iogyu"]
+[ext_resource type="Script" path="res://scenes/gamemodes/local_multiplayer/lobby/ReadyButton.gd" id="2_y223a"]
+
+[node name="CheckButton" type="CheckButton"]
+theme = ExtResource("1_iogyu")
+text = "Ready"
+script = ExtResource("2_y223a")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qavf0xp0umn7"]
+
+[ext_resource type="Script" path="res://scenes/gamemodes/practice/practice.gd" id="1_rnyn3"]
+
+[node name="practice" type="Node"]
+script = ExtResource("1_rnyn3")

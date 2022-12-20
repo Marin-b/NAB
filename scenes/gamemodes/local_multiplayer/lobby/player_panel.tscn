@@ -1,0 +1,195 @@
+[gd_scene load_steps=20 format=3 uid="uid://i2au0f5chj0t"]
+
+[ext_resource type="Script" path="res://scenes/gamemodes/local_multiplayer/lobby/player_panel.gd" id="1_vbpe1"]
+[ext_resource type="PackedScene" uid="uid://c7yvhfpn62rcf" path="res://scenes/UI/player_control_panel/player_control_panel.tscn" id="2_og0xn"]
+[ext_resource type="PackedScene" uid="uid://cy41mi6iipw" path="res://scenes/UI/selectable_item/selectable_item.tscn" id="3_scxah"]
+[ext_resource type="PackedScene" uid="uid://c320f8363oxcu" path="res://scenes/gamemodes/local_multiplayer/lobby/ready_button.tscn" id="4_1u2mv"]
+
+[sub_resource type="Theme" id="Theme_d56ku"]
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 180
+MarginContainer/constants/margin_right = 180
+MarginContainer/constants/margin_top = 20
+
+[sub_resource type="Shader" id="Shader_vs1ra"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: source_color = vec4(1.0, 1.0, 1.0, 0.2);
+uniform float flash_modifier: hint_range(0.0, 1.0) = 0;
+
+void fragment() {
+	// vec4 color = texture(TEXTURE, UV);
+	// color.rgb = mix(color.rgb, flash_color.rgb, 1.0);
+	// COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fsjf2"]
+resource_local_to_scene = true
+shader = SubResource("Shader_vs1ra")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rrtx"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb1hc"]
+bg_color = Color(0.8, 0.2, 0.152941, 0.458824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krf32"]
+bg_color = Color(0.301961, 0.694118, 0.439216, 0.556863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vg2ik"]
+bg_color = Color(0.94902, 0.301961, 0.737255, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfarb"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.917647, 0.870588, 0.752941)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Theme" id="Theme_f7bji"]
+resource_local_to_scene = true
+Button/styles/focus = SubResource("StyleBoxFlat_8rrtx")
+Button/styles/normal = SubResource("StyleBoxFlat_8rrtx")
+CheckButton/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+CheckButton/styles/normal = SubResource("StyleBoxFlat_rb1hc")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_krf32")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vg2ik")
+PanelContainer/styles/panel_active = SubResource("StyleBoxFlat_vfarb")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w5hv"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mand8"]
+bg_color = Color(0.8, 0.2, 0.152941, 0.458824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at4ow"]
+bg_color = Color(0.301961, 0.694118, 0.439216, 0.556863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g01d4"]
+bg_color = Color(0.94902, 0.301961, 0.737255, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em36v"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.917647, 0.870588, 0.752941)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Theme" id="Theme_3jalx"]
+resource_local_to_scene = true
+Button/styles/focus = SubResource("StyleBoxFlat_2w5hv")
+Button/styles/normal = SubResource("StyleBoxFlat_2w5hv")
+CheckButton/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+CheckButton/styles/normal = SubResource("StyleBoxFlat_mand8")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_at4ow")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_g01d4")
+PanelContainer/styles/panel_active = SubResource("StyleBoxFlat_em36v")
+
+[node name="connected_player" type="PanelContainer" node_paths=PackedStringArray("connected", "control_panel", "ready_button", "label", "not_connected")]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_vbpe1")
+connected = NodePath("BoxContainer/Connected")
+control_panel = NodePath("BoxContainer/Connected/BoxContainer2/ControlPanel")
+ready_button = NodePath("BoxContainer/Connected/BoxContainer2/ControlPanel/MarginContainer/Selectable/CheckButton")
+label = NodePath("BoxContainer/Connected/BoxContainer/Label")
+not_connected = NodePath("BoxContainer/NotConnected")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 1918.0
+offset_bottom = 1078.0
+alignment = 1
+
+[node name="NotConnected" type="Label" parent="BoxContainer"]
+offset_left = 873.0
+offset_top = 525.0
+offset_right = 1042.0
+offset_bottom = 551.0
+text = "Press start to connect"
+
+[node name="Connected" type="BoxContainer" parent="BoxContainer"]
+visible = false
+size_flags_horizontal = 3
+vertical = true
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/Connected"]
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="BoxContainer/Connected/BoxContainer"]
+text = "Visible
+"
+
+[node name="BoxContainer2" type="BoxContainer" parent="BoxContainer/Connected"]
+size_flags_vertical = 3
+
+[node name="ControlPanel" parent="BoxContainer/Connected/BoxContainer2" instance=ExtResource("2_og0xn")]
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxContainer/Connected/BoxContainer2/ControlPanel"]
+size_flags_vertical = 8
+theme = SubResource("Theme_d56ku")
+
+[node name="Selectable" parent="BoxContainer/Connected/BoxContainer2/ControlPanel/MarginContainer" instance=ExtResource("3_scxah")]
+material = SubResource("ShaderMaterial_fsjf2")
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 180.0
+offset_top = 20.0
+offset_right = 268.0
+offset_bottom = 47.0
+grow_horizontal = 1
+grow_vertical = 1
+theme = SubResource("Theme_f7bji")
+
+[node name="CheckButton" parent="BoxContainer/Connected/BoxContainer2/ControlPanel/MarginContainer/Selectable" instance=ExtResource("4_1u2mv")]
+theme = SubResource("Theme_3jalx")
+
+[connection signal="pressed" from="BoxContainer/Connected/BoxContainer2/ControlPanel/MarginContainer/Selectable" to="BoxContainer/Connected/BoxContainer2/ControlPanel/MarginContainer/Selectable/CheckButton" method="_on_selectable_pressed"]
